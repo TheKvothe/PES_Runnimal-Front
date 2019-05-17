@@ -25,4 +25,5 @@ public class PetViewModel {
     private Pet.PetSize size;
 
     private OwnerViewModel owner;
+    private OwnerViewModel[] otherOwners;
 }
