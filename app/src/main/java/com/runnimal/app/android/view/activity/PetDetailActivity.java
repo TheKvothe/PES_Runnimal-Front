@@ -21,6 +21,7 @@ import java.time.LocalDate;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import io.reactivex.Single;
 
 public class PetDetailActivity extends BaseActivity implements PetDetailPresenter.View {
 
@@ -110,9 +111,18 @@ public class PetDetailActivity extends BaseActivity implements PetDetailPresente
             initializeAddOwnerButton(pet);
         }
         else{
-            editImage.setImageResource(R.drawable.ic_remove);
-            initializeEditImageButton(pet, 1);
+            if (esDueñoAdicional(pet)){
+                editImage.setImageResource(R.drawable.ic_remove);
+                initializeEditImageButton(pet, 1);
+            }
         }
+    }
+
+    private boolean esDueñoAdicional(PetViewModel pet) {
+        for (int i =0; i<pet.getOtherOwners().length; i++){
+            if (pet.getOtherOwners()[i].getEmail().equals(SingletonSession.Instance().getMail())) return true;
+        }
+        return false;
     }
 
 
