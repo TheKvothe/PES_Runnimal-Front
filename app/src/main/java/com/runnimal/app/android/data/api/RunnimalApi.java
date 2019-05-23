@@ -11,6 +11,7 @@ import com.runnimal.app.android.domain.Point;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.domain.User;
+import com.runnimal.app.android.domain.Walk;
 
 import java.util.List;
 
@@ -83,6 +84,8 @@ public interface RunnimalApi {
     void preLogin(String token, RunnimalApiCallback<Owner> callback);
 
     void listFriendships(RunnimalApiCallback<List<Friendship>> listRunnimalApiCallback);
+
+    void listWalks(RunnimalApiCallback<List<Walk>> listRunnimalApiCallback);
 
     interface RunnimalApiCallback<T> {
 

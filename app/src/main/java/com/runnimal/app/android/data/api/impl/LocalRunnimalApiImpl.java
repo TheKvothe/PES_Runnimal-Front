@@ -1,7 +1,6 @@
 package com.runnimal.app.android.data.api.impl;
 
 import android.graphics.Bitmap;
-import android.util.Log;
 
 import com.runnimal.app.android.data.api.RunnimalApi;
 import com.runnimal.app.android.domain.Friend;
@@ -13,10 +12,9 @@ import com.runnimal.app.android.domain.Point;
 import com.runnimal.app.android.domain.Ranking;
 import com.runnimal.app.android.domain.Training;
 import com.runnimal.app.android.domain.User;
+import com.runnimal.app.android.domain.Walk;
 import com.runnimal.app.android.util.IOUtils;
 import com.runnimal.app.android.util.JacksonFactory;
-
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -36,6 +34,7 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
     private static final String FRIEND_REQUESTS_FILE = "json/friend-requests.json";
     private static final String POINTS_FILE = "json/points.json";
     private static final String OWNERS_FILE = "json/owners.json";
+    private static final String WALKS_FILE = "json/walks.json";
 
     private final JacksonFactory jacksonFactory;
 
@@ -278,5 +277,13 @@ public class LocalRunnimalApiImpl implements RunnimalApi {
         }
     }
 
+    @Override
+    public void listWalks(RunnimalApiCallback<List<Walk>> listRunnimalApiCallback) {
+        try {
+            listRunnimalApiCallback.responseOK(jacksonFactory.toList(IOUtils.getResource(WALKS_FILE), Walk.class));
+        } catch (Exception e) {
+            listRunnimalApiCallback.responseError(e);
+        }
+    }
 
 }

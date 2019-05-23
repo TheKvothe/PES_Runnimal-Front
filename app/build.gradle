@@ -48,7 +48,8 @@ dependencies {
     compileOnly lombok
     annotationProcessor lombok
 
-    implementation mapsDependencies.google
+    implementation mapsDependencies.maps
+    //implementation mapsDependencies.location
 
     implementation daggerDependencies.dagger
     annotationProcessor daggerDependencies.daggerCompiler
